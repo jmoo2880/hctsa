@@ -645,7 +645,6 @@ function [testStat,Mdl] = giveMeStats(dataMatrix,groupLabels,beVerbose)
         testStat = Mdl.Beta; % (code assumes bigger is better)
         testStat = testStat/max(abs(testStat)); % rescale by max-abs
     else
-        loopTimer = tic;
         BF_ProgressBar('new')
         nout = nargout;
         parfor k = 1:numFeatures
@@ -663,6 +662,7 @@ function [testStat,Mdl] = giveMeStats(dataMatrix,groupLabels,beVerbose)
         end
         BF_ProgressBar('close')
     end
+   
 end
 %-------------------------------------------------------------------------------
 
