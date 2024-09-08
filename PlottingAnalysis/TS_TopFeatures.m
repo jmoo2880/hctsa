@@ -647,9 +647,10 @@ function [testStat,Mdl] = giveMeStats(dataMatrix,groupLabels,beVerbose)
     else
         loopTimer = tic;
         BF_ProgressBar('new')
-        for k = 1:numFeatures
+        nout = nargout;
+        parfor k = 1:numFeatures
             try
-                if nargout == 2
+                if nout == 2
                     % This is slower for the fast-linear classifier (but returns a model)
                     [testStat(k),Mdl{k}] = fn_testStat(dataMatrix(:,k),groupLabels,dataMatrix(:,k),groupLabels);
                 else
